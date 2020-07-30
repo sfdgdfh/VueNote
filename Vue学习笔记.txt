@@ -1,0 +1,40 @@
+# Vue学习笔记
+
+**vue初体验**
+记录vue学习过程中的知识点
+# 指令 v-once、v-html、v-text、v-pre
+```javascript
+<div id="app">
+    <h1>{{message}}</h1>
+	<h2 v-once>{{message}}</h2>
+	<h3 v-html = "url"></h3>//将返回的html展现在dom；类似与angular的ng-bind-html
+	<h2 v-text = "message"></h2>//一般不使用，不够灵活，{{}}可以拼接，v-text会覆盖dom
+	<h2 v-pre>{{message}}</h2>//直接显示{{message}}
+</div>
+const app = new Vue({
+    el: '#app',
+	data: {
+	    message: '你好',
+		url: '<a href="www.baidu.com">百度一下</a>'
+	}
+})
+```
+# 指令 v-cloak（”斗篷“）
+```javascript
+<style>
+    [v-cloak] {
+	    display:none;
+	}
+</style>
+<div id="app" v-cloak>
+    <h1>{{message}}</h1>
+</div>
+    setTimeout(function() {
+        const app = new Vue({
+	    el: 'app',
+	    data: {
+	        message: '你好'
+	    }
+	    })
+    },1000)//Vue解析数据之前,div不显示
+```
